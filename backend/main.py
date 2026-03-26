@@ -61,7 +61,7 @@ def fetch_posts(req: ScrapeRequest):
         return JSONResponse(content=result)
     except ScraperError as e:
         logger.warning(f"Scraper error for @{username}: {str(e)}")
-        raise HTTPException(status_code=422, detail=str(e))
+        raise HTTPException(status_code=503, detail=str(e))
     except Exception as e:
         logger.error(f"Unexpected error for @{username}: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail="An unexpected server error occurred.")

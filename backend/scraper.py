@@ -15,6 +15,7 @@ import instaloader
 logger = logging.getLogger("scraper")
 
 INSTALOADER_RATE_LIMIT_PAUSE = float(os.getenv("RATE_LIMIT_PAUSE", "1.5"))
+RATE_LIMIT_429_PAUSE = float(os.getenv("RATE_LIMIT_429_PAUSE", "45.0"))
 MAX_RETRIES = int(os.getenv("MAX_RETRIES", "2"))
 
 
@@ -35,7 +36,7 @@ class InstagramScraper:
             save_metadata=False,
             compress_json=False,
             quiet=True,
-            fatal_status_codes=[400, 403, 404, 429],
+            fatal_status_codes=[400, 403, 404],
         )
         return L
 
@@ -69,10 +70,10 @@ class InstagramScraper:
             except instaloader.exceptions.TooManyRequestsException:
                 logger.warning(
                     f"Rate limited by Instagram (attempt {attempt + 1}/{MAX_RETRIES + 1}). "
-                    f"Waiting {INSTALOADER_RATE_LIMIT_PAUSE * 3:.1f}s…"
+                    f"Waiting {RATE_LIMIT_429_PAUSE:.0f}s…"
                 )
-                time.sleep(INSTALOADER_RATE_LIMIT_PAUSE * 3)
-                last_exc = None 
+                time.sleep(RATE_LIMIT_429_PAUSE)
+                last_exc = None
             except instaloader.exceptions.ConnectionException as e:
                 logger.warning(
                     f"Connection error (attempt {attempt + 1}/{MAX_RETRIES + 1}): {e}"
