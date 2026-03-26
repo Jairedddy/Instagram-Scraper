@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InstaInsights — Instagram Research Tool</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="noise"></div>
+  <header class="site-header">
+    <div class="logo">
+      <span class="logo-icon">◈</span>
+      <span class="logo-text">InstaInsights</span>
+    </div>
+    <p class="tagline">Cold-outreach intelligence for Instagram profiles</p>
+  </header>
+  <main>
+    <section class="search-section">
+      <form id="searchForm" class="search-form" novalidate>
+        <div class="input-wrapper">
+          <span class="at-sign">@</span>
+          <input
+            type="text"
+            id="usernameInput"
+            class="username-input"
+            placeholder="instagram_username"
+            autocomplete="off"
+            spellcheck="false"
+            maxlength="30"
+          />
+        </div>
+
+        <div class="controls-row">
+          <label class="posts-label">
+            <span>Posts to fetch</span>
+            <input type="range" id="maxPosts" min="3" max="15" value="9" />
+            <span id="postsCount" class="posts-count">9</span>
+          </label>
+          <button type="submit" class="fetch-btn" id="fetchBtn">
+            <span class="btn-text">Fetch Posts</span>
+            <span class="btn-icon">→</span>
+          </button>
+        </div>
+      </form>
+      <div id="errorBanner" class="error-banner hidden" role="alert">
+        <span class="error-icon">⚠</span>
+        <span id="errorMessage"></span>
+        <button class="dismiss-btn" id="dismissError">✕</button>
+      </div>
+    </section>
+    <section id="loadingSection" class="loading-section hidden">
+      <div class="loader-ring"></div>
+      <p class="loading-text">Reaching into Instagram…</p>
+    </section>
+    <section id="resultsSection" class="results-section hidden">
+      <div class="profile-card" id="profileCard">
+        <div class="profile-left">
+          <div class="avatar-wrap">
+            <img id="profilePic" class="avatar" src="" alt="Profile picture" />
+          </div>
+          <div class="profile-meta">
+            <div class="profile-name-row">
+              <h2 id="profileFullName" class="profile-full-name"></h2>
+              <span id="verifiedBadge" class="verified-badge hidden" title="Verified">✔</span>
+            </div>
+            <p id="profileUsername" class="profile-username"></p>
+            <p id="profileBio" class="profile-bio"></p>
+          </div>
+        </div>
+        <div class="profile-stats">
+          <div class="stat">
+            <span id="statPosts" class="stat-num">—</span>
+            <span class="stat-label">Posts</span>
+          </div>
+          <div class="stat">
+            <span id="statFollowers" class="stat-num">—</span>
+            <span class="stat-label">Followers</span>
+          </div>
+          <div class="stat">
+            <span id="statFollowing" class="stat-num">—</span>
+            <span class="stat-label">Following</span>
+          </div>
+        </div>
+      </div>
+      <div class="results-toolbar">
+        <h3 class="results-title">
+          Fetched Posts
+          <span id="postsBadge" class="posts-badge"></span>
+        </h3>
+        <div class="toolbar-actions">
+          <label class="sort-label">
+            Sort by:
+            <select id="sortSelect" class="sort-select">
+              <option value="engagement">Engagement</option>
+              <option value="newest">Newest</option>
+              <option value="oldest">Oldest</option>
+            </select>
+          </label>
+          <button class="export-btn" id="exportBtn">
+            ↓ Export JSON
+          </button>
+        </div>
+      </div>
+      <div class="posts-grid" id="postsGrid"></div>
+
+    </section>
+  </main>
+  <footer class="site-footer">
+    <p>Only works with public accounts &nbsp;·&nbsp; Built for outreach research</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+*.manifest
+*.spec
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+.classpath
+
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store
+.DS_Store?
+._*
+
+# Testing / Coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+
+# mypy / type checking
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pytype/
+
+# Distribution / Packaging
+*.tar.gz
+*.whl
+
+# Scraped data / output
+*.csv
+*.json
+!package.json
+*.xlsx
+downloads/
+output/
+data/
+
+# Node (if any tooling is added)
+node_modules/
